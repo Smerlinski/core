@@ -1,0 +1,2 @@
+# core
+Djnago backend app
