@@ -6,6 +6,7 @@ from accounts.serializers import CustomUserSerializer
 
 class ProjectSerializer(serializers.ModelSerializer):
     author = CustomUserSerializer()
+    id = serializers.ModelField(model_field=Project()._meta.get_field('id'))
 
     class Meta:
         model = Project
@@ -37,7 +38,7 @@ class TaskSerializer(serializers.ModelSerializer):
     def create(self, validated_data):
         project_data = validated_data.pop('project')
         author_data = validated_data.pop('author')
-        responsible_data = validated_data('responsible')
+        responsible_data = validated_data.pop('responsible')
         project = get_object_or_404(Project, id=project_data['id'])
         author = get_object_or_404(CustomUser, email=author_data['email'])
         responsible = get_object_or_404(CustomUser, email=responsible_data['email'])
