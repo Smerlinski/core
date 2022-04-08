@@ -48,7 +48,7 @@ class TaskSerializer(serializers.ModelSerializer):
     def update(self, instance, validated_data):
         project_data = validated_data.pop('project')
         author_data = validated_data.pop('author')
-        responsible_data = validated_data('responsible')
+        responsible_data = validated_data.pop('responsible')
         instance.name = validated_data.get('name', instance.name)
         instance.description = validated_data.get('description', instance.description)
         instance.status = validated_data.get('status', instance.status)
