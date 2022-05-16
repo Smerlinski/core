@@ -26,6 +26,7 @@ class ProjectSerializer(serializers.ModelSerializer):
         instance.save()
         return instance
 
+
 class TaskSerializer(serializers.ModelSerializer):
     project = ProjectSerializer()
     author = CustomUserSerializer()
